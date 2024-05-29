@@ -19,6 +19,8 @@ public class GoldMine : MonoBehaviour
 
     private void Update()
     {
+        if (readyToMine) return;
+    
         timer += Time.deltaTime;
 
         if (timer > m_timeForMine)
