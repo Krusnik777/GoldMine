@@ -19,7 +19,12 @@ public class PlayerController : MonoBehaviour
         m_playerStats = await m_requestCollection.UpgradeLevelAsync(m_playerStats);
     }
 
-    private void Start()
+    public async void GetGoldFromMine()
+    {
+        m_playerStats = await m_requestCollection.GetGoldFromMineAsync(m_playerStats);
+    }
+
+    public void StartPlayerUpdate()
     {
         StartCoroutine(UpdateCoroutine());
     }

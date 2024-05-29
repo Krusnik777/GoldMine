@@ -21,11 +21,16 @@ namespace Server
 
         public void NextLevel()
         {
-            if (Gold >= 10)
+            if (Gold >= 10 * Level)
             {
-                Gold -= 10;
+                Gold -= 10 * Level;
                 Level++;
             }
+        }
+
+        public void GetBonusGold()
+        {
+            Gold += 5 * Level;
         }
     }
 }

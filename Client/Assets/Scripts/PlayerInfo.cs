@@ -10,6 +10,12 @@ public class PlayerInfo : MonoBehaviour
     public string Name => m_name;
     public string Password => m_password;
 
+    public void SetPlayerInfo(string name, string password)
+    {
+        m_name = name;
+        m_password = password;
+    }
+
     public string GetPasswordHash()
     {
         StringBuilder sb = new StringBuilder();
@@ -24,7 +30,7 @@ public class PlayerInfo : MonoBehaviour
             }
         }
 
-        Debug.Log(sb.ToString());
+        //Debug.Log(sb.ToString());
 
         return sb.ToString();
     }

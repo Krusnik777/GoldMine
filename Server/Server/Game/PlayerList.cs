@@ -7,6 +7,15 @@ namespace Server
     {
         private List<Player> players = new List<Player>();
 
+        public int Count => players.Count;
+
+        public Player this[int index] => players[index];
+
+        public void AddPlayers(List<Player> players)
+        {
+            this.players.AddRange(players);
+        }
+
         public void AddNewPlayer(PlayerInfo playerInfo)
         {
             if (!CheckPlayerExist(playerInfo))

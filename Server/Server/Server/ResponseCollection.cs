@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Server
 {
@@ -21,6 +22,8 @@ namespace Server
         public string GetResponseForPOST(string resource, string content, PlayerInfo playerInfo)
         {
             if (resource == "/playerStats" && content == "UpgradeLevel") return UpgradeLevel(playerInfo);
+            if (resource == "/playerStats" && content == "GetGoldFromMine") return GetGoldFromMine(playerInfo);
+            if (resource == "/playerStats" && content == "SignUpNewPlayer") return SignUpNewPlayer(playerInfo);
 
             return "";
         }
@@ -35,6 +38,20 @@ namespace Server
         {
             PlayerStats playerStats = playerList.GetPlayerStats(playerInfo);
             playerStats.NextLevel();
+            return JsonConvert.SerializeObject(playerStats);
+        }
+
+        private string GetGoldFromMine(PlayerInfo playerInfo)
+        {
+            PlayerStats playerStats = playerList.GetPlayerStats(playerInfo);
+            playerStats.GetBonusGold();
+            return JsonConvert.SerializeObject(playerStats);
+        }
+
+        private string SignUpNewPlayer(PlayerInfo playerInfo)
+        {
+            playerList.AddNewPlayer(playerInfo);
+            PlayerStats playerStats = playerList.GetPlayerStats(playerInfo);
             return JsonConvert.SerializeObject(playerStats);
         }
     }
